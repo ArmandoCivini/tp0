@@ -66,4 +66,5 @@ Aqui vemos la ejecución con gdb del programa. En cuanto a los comandos, info fu
  * ![SS luego de cerrar nc](ss_2.png)
  * Al correr este tipo de conexion con tiburoncin podemos ver y analizar los bits enviados entre ambos puntos. Junto con hexdump podemos interpretar los mensajes entre estos puntos. Tiburoncin funciona como un man in the middle ya que intercepta la conexion y atrapa todos los mensajes entre ambos puntos.
  * ![cat](cat.png)
+ * ![cat2](cat2.png)
  * ![hexdump con tiburoncin](hexdump_tibu.png)
