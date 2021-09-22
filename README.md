@@ -34,7 +34,7 @@ el char ocupa 1 byte mientras que el int ocupa 4. Al intentar guardar esto en un
  
  * Para este paso no hay diferencias en el archivo "paso_main.c". En cuanto a "paso_wordcounter.c" se agregó la librería "stdlib.h" y en "paso_wordcounter.h" se agregaron las librerías "string.h" y "stdio.h".
  * ![Errores de ejecución](paso3_err.png)
- En este paso vemos que el único error es la falta de la declaración de la función "wordcounter_destroy" ya que a pesar de estar declarada en el header file, esta no esta definida su funcionalidad en el "paso_wordcounter.c"
+ En este paso vemos que el único error es la falta de la definición de la función "wordcounter_destroy" ya que a pesar de estar declarada en el header file, esta no esta definida su funcionalidad en el "paso_wordcounter.c", resultando asi en un linker error.
 ## Paso 4
  * El único cambio que hubo en este paso es la definición de la función "wordconter_destroy" en el archivo "paso_wordcounter.c"
  * ![TDA Valgrind](tda_valgrind.png)
@@ -50,7 +50,8 @@ el char ocupa 1 byte mientras que el int ocupa 4. Al intentar guardar esto en un
  Aqui vemos que esta prueba falla ya que da 0 en vez de 1. Esto es porque el contador de palabras empieza en 0 y al haber una sola palabra no hay ningun delimitador por lo que se mantiene en 0.
  ![Archivo Invalido](invalid.png)
  En este caso el resultado da 255 en vez de 1 por el hecho que el codigo no tiene en cuenta casos como archivos invalidos por lo que resulta en comportamiento no deseado
- * El último caracter del "input_single_word.txt" es el **End of Transmit**
+ ![Hexdump de single word](hex_5.png)
+ * El último caracter del "input_single_word.txt" es el byte 0x04 que corresponde al caracter **End of Transmit**.
  * ![GDB](gdb.png)
 Aqui vemos la ejecución con gdb del programa. En cuanto a los comandos, info function nos da una lista de las funciones definidas, list imprime las lineas de la funcion que le pasamos, break más una cantidad hace un break esa cantidad de lineas después, el commando run empieza a correr el programa nuevamente y finalmente quit cierra el gdb. El break no ocurrio ya que nunca llegamos a esa instancia en el programa.
 ## Paso 6
