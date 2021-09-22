@@ -7,7 +7,7 @@
 	 * ![Ejecución sin valgrind](paso0_sin.png)
 	 * ![Ejecución con valgrind](paso0_con.png)
 * Valgrind es una herramienta de debugging principalmente usada para encontrar fallas con el manejo de memoria de un programa. Estos pueden ser memoria que no se libera al finalizar el programa o que el programa intente de escribir en bloques de memoria ya liberados
-* **sizeof()** en una función en el estandar de C y C++ la cual devuelve la cantidad de bytes que ocupa en memoria el tipo de dato que se le pase. Por ejemplo con un char que ocupa 8 bits **sizeof()** devolvería 1 y con un int devolvería 4.
+* **sizeof()** en una función en el estandar de C y C++ la cual devuelve la cantidad de bytes que ocupa en memoria el tipo de dato que se le pase. Por ejemplo con un char que ocupa 8 bits **sizeof()** devolvería 1 y con un int, aunque es independiente de la arquitctura, usualmente devuelve 4 y lo asumiremos así para este ejemplo.
 * Al tener un struct que sea un conjunto de tipos de datos, su **sizeof()** no siempre va a corresponder a la suma de los **sizeof()** de sus tipos de datos, ya que puede que se haya agregado padding(boques de memoria vacia) al struct. Por ejemplo si hacemos
 
 ```c
@@ -22,7 +22,7 @@ el char ocupa 1 byte mientras que el int ocupa 4. Al intentar guardar esto en un
  * ![Errores de estilo](errores_de_estilo.png)
      Aqui se muestran los errores de estilo marcados por el cpplint al hacer la entrega. El error 1 y 6 se refieren a que luego de una estructura como if o while hay que colocar un espacio entre esta y el parentesis. El error 2 y 3 hablan de espacios innesesarios dentro de los parentesis. Los errores 4, 5 , 9 y 10 hablan de que los else tiene que estar en la misma linea que el bracket que cierran y el que abren. El error 7 menciona un espacio innesesario antes de un punto y coma. El error 8 es dice que es preferente usar casi siempre **snprintf()** sobre **strcpy()**. Finalmente el 11avo error es sobre una linea que contiene más de 80 caracteres, lo cual es incorrecto.
  * ![Errores de generación](errores_gen.png)
-     Estos son los errores de generación que surguieron al entregar. Los 5 errores presentes son linker error, uno de ellos por no reconocer un tipo de dato que debería obtener de otro archivo y los otros 4 por no reconocer funciones que estan declaradas en otro archivo.
+     Estos son los errores de generación que surguieron al entregar. Los 5 errores presentes son compiler errors, uno de ellos por no reconocer un tipo de dato que debería obtener de otro archivo y los otros 4 por no reconocer funciones que estan declaradas en otro archivo. Estos últimos en realidad son Warnings pero al compilar el programa con el parametro -Werror, estos pasan a ser errores de compilación.
  * El sistema no reportó warnings ya que se compiló con el comando -Werror el cual transforma todas las warnings en errores.
 ## Paso 2
  * En cuanto a los cambios entre el paso 1 y el paso 2, en el archivo paso_main  se agregó el include del archivo "paso_wordcount.h" lo cual corrije los errores de linker del paso pasado, se cambió **strcpy()** por **memcpy()** y se puso a else en la misma linea que el corchete del if que lo antecede lo cual corrijieron sus respectivos errores en el cpplint. En el archivo "paso_wordscounter.c" solo se hicieron cambios sintacticos para corregir los errores cpplint. y finalmente en el archivo "paso_wordcounter.h" se acortó la linea mayor a 80 caracteres por un comentario más resumido.
