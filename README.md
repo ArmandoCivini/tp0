@@ -49,13 +49,13 @@ el char ocupa 1 byte mientras que el int ocupa 4. Al intentar guardar esto en un
  * ![Single Word](single_word.png)
  Aqui vemos que esta prueba falla ya que da 0 en vez de 1. Esto es porque el contador de palabras empieza en 0 y al haber una sola palabra no hay ningun delimitador por lo que se mantiene en 0.
  ![Archivo Invalido](invalid.png)
- En este caso el resultado da 255 en vez de 1 por el hecho que el codigo no tiene en cuenta casos como archivos invalidos por lo que resulta en comportamiento no deseado
+ En este caso el resultado da 255 en vez de 1 por el hecho que se esta intentando de abrir un archivo invalido a lo que el codigo devuelve -1 como valor de error. Ya que en UNIX el exit code de un programa esta definido como un unsigned 8-bit int el -1 se castea y devuelve el valor 255.
  ![Hexdump de single word](hex_5.png)
  * El último caracter del "input_single_word.txt" es el byte 0x04 que corresponde al caracter **End of Transmit**.
  * ![GDB](gdb.png)
 Aqui vemos la ejecución con gdb del programa. En cuanto a los comandos, info function nos da una lista de las funciones definidas, list imprime las lineas de la funcion que le pasamos, break más una cantidad hace un break esa cantidad de lineas después, el commando run empieza a correr el programa nuevamente y finalmente quit cierra el gdb. El break no ocurrio ya que nunca llegamos a esa instancia en el programa.
 ## Paso 6
- * En esta ultima instancia, en el archivo "paso_main.c" se definió el error como 1 en vez de -1 y en "paso_wordcounter.c" ahora se cuenta el end of file como palabra.
+ * En esta ultima instancia, en el archivo "paso_main.c" se definió el error como 1 en vez de -1 y en "paso_wordcounter.c" ahora en el caso de no haber ningun delim_word en el archivo, si este termina inmediatamente no se cuentan palabras y este devuelve 0 y en el caso de haber algun caracter, se contará una palabra.
  * ![Entregas](entregas.png)
  * ![Single word 1](prueba_final_1.png)
  ![Single word 3](prueba_final_2.png)
